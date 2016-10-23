@@ -1,0 +1,4 @@
+<p>Note moyenne <span id="star"></span></p>
+<% if attending && @track.is_owned_by?(current_user) == false %>
+	<p>Votre note <span id="user_star"></span></p>
+<% end %>

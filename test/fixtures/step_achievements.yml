@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: step_achievements
+#
+#  id           :integer          not null, primary key
+#  attending_id :integer
+#  step_id      :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  step_id: 
+
+two:
+  user_id: 
+  step_id: 

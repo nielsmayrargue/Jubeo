@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>BLOG_NAME</title>
+ <link href="YOUR_URL/atom.xml" rel="self"/>
+ <link href="YOUR_URL"/>
+ <updated>2014-04-29T01:07:37+02:00</updated>
+ <id>BLOG_URL</id>
+ <author>
+   <name>BLOG_NAME</name>
+ </author>
+
+ 
+ <entry>
+   <title>Se libérer du trac : que dit la science</title>
+   <link href="YOUR_URL/se-liberer-du-trac-que-dit-la-science.html"/>
+   <updated>2014-04-29T00:00:00+02:00</updated>
+   <id>BLOG_URL/se-liberer-du-trac-que-dit-la-science</id>
+   <content type="html">&lt;p&gt;Pour les curieux, voici les explications scientifiques qui sont derrière notre premier Coaching vous permettant de vous libérer du trac à l&#39;oral.&lt;/p&gt;
+
+&lt;p&gt;Si vous avez la moindre question, n&#39;hésitez surtout pas à nous écrire !&lt;/p&gt;
+
+&lt;iframe src=&quot;//player.vimeo.com/video/93197717&quot; width=&quot;750&quot; height=&quot;420&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+
+</content>
+ </entry>
+ 
+ 
+</feed>

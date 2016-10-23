@@ -1,0 +1,79 @@
+
+
+<!-- makes jsdemo only on the first well -->
+	<% if defined? counter_for_demo %>
+		<% if counter_for_demo == 1 %>
+			<% demo_step_number = "3" %>
+		<% end %>
+	<% end %>
+<!--end-->
+
+  <div class="col-md-4 filtred">
+
+  	<div class="well well-sm well-shortview" data-step=<%=demo_step_number %> data-intro="Chaque Coaching est composé de plusieurs étapes, chacune composée d'un enregistrement vidéo ou audio. Vous progressez ainsi pas à pas, avec chaque fois de nouveaux exercices." data-position="right">
+
+      <p>
+        <% track.title %>
+      </p>
+
+  		<p>
+        <% track.theme_list.each do |theme| %>
+  				<span class="badge"><%= theme %><br></span>
+  			<% end %>
+  		</p>
+
+  	  <p>
+    		<% if track.status == "preview" %>
+    			<h4>
+            <i class="glyphicon glyphicon-eye-open"></i> Bientôt disponible
+          </h4>
+    		<% end %>
+    		<%= link_to track_path(track) do %>
+    	  	<h4>
+            <%= track.title %>
+          </h4>
+    	  <% end %>
+    	  <small>coach : <%= full_name_link(track.user) %></small>
+  	  </p>
+
+  	  <p>
+  		  <%= link_to track_path(track) do %>
+          <% if track.intro_video.empty? == false %>
+  		  	 <%= image_tag(video_thumbnail(track.intro_video), class: "img-responsive") %>
+          <% elsif track.picture %>
+            <%= image_tag track.picture.url, class: "profile-picture", width: "100%" %>
+          <% end %>
+  		  <% end %>
+  	  </p>
+
+  	  <p>
+  	  	<div class="row">
+  	  		<div class="col-md-5">
+  		  	<%= link_to "Voir le Coaching", track_path(track), class: "btn btn-primary"%>
+  		  	</div>
+  		  	<div class="col-md-7 text-right">
+  		  	<% attending = current_user.attending(track) %>
+  		  	<% if attending && track.is_owned_by?(current_user) == false %>
+  		  		<% if attending.completed == true %>
+  		  			<%= image_tag 'track-achievement.png', width: 20 %>
+  		  			terminé
+  		  		<% else %>
+  		  			<span class="glyphicon glyphicon-ok-circle" id="attended-markup">abonné </span>
+  		  		<% end %>
+  		  	<% else %>
+  		  	<% if track.price == 0 %>
+  		  		<b>Offert pour le lancement</b>
+  		  	<% else %>
+  		  		<b><%= track.price %> €</b>
+  		  	<% end %>
+  		  <% end %>
+  		  </div>
+  	  </div>
+  	 </p>
+
+     <br>
+
+    </div>
+
+</div>
+

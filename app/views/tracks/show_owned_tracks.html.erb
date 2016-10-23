@@ -1,0 +1,55 @@
+<div class="row">
+	<h1>Voici les Coachings que vous avez créés</h1>
+</div>
+
+<div class="row">
+<table class="table">
+	<table class="table table-striped">
+
+	<% current_user.tracks.each do |track| %>
+		
+		<tr class="info">
+			<th colspan="2">Vidéo</th>
+			<th>Titre</th>
+			<th>Tags</th>
+			<th colspan="2">Description</th>
+			<th>Steps</th>
+			<th>Prix</th>
+			<th>Inscrits</th>
+			<th colspan="3">Modifications</th>
+		</tr>
+		<tr>
+			<td colspan="2"><%= embeded_video(track.intro_video, width: 300, height: 200) %></td>
+			<td><%= track.title %></td>
+			<td>
+				<% track.theme_list.each do |theme| %>
+					<span class="badge"><%= theme %><br></span>
+				<% end %>
+			</td>
+			<td colspan="2"><%= truncate(track.description, length: 100) %></td>
+			<td><%= track.steps.count %></td>
+			<td><%= track.price %>€</td>
+			<td></td>
+			<td><%= link_to "Voir", track_path(track) %></td>
+			<td><%= link_to "Editer", edit_track_path(track) %></td>
+			<td><%= link_to "Supprimer", track_path(track), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+		
+		<tr>
+			<% track.steps.each do |step| %>
+
+			<td>
+				<%= link_to "#{step.title}", track_step_path(track, step) %><br>
+				<%= embeded_video(step.video, width: 150, height: 100) %>
+			</td>
+
+			<% end %>
+
+		</tr>
+
+	<% end %>
+
+
+	</table>
+
+</div>

@@ -1,0 +1,42 @@
+<br>
+<br>
+<div class="row">
+	<div class="col-md-5">
+			<%= image_tag @user.avatar.url(:medium), class: "profile-picture" %>
+	</div>
+	<div class="col-md-7">
+		<div class="row">
+		<h1><%= @user.full_name %></h1>
+		</div>
+		<br>
+		<div class="row">
+			<i class="glyphicon glyphicon-book">
+				Biographie : <%= @user.bio.html_safe %>
+			</i>
+		</div>
+		<br>
+		<div class="row">
+			<i class="glyphicon glyphicon-certificate">
+			Nombre de Coachings créés : <%= @user.tracks.count %>
+			</i>
+		</div>
+		<br>
+		<div class="row">
+			<i class="glyphicon glyphicon-ok-circle">
+			Nombre de Coachings suivis : <%= @user.attendings.count %>
+			</i>
+		</div>
+	</div>
+</div>
+
+<% if @user.tracks == true %>
+<h3>Coachings de ce coach :</h3>
+
+<br>
+
+<% @user.tracks.each do |track|  %>
+			<%= render partial: 'tracks/shortview_track', locals: { track: track } %>
+	<% end %>
+
+<% end %>
+

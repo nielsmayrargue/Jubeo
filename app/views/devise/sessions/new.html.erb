@@ -1,0 +1,29 @@
+<div class="col-md-6 col-md-offset-3" login>
+
+	<h2>Connexion</h2>
+
+	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {role: "form"}) do |f| %>
+	  <div class="form-group">
+	  	<%= f.label :email %><br />
+	  	<%= f.email_field :email, :autofocus => true, class: "form-control" %>
+	  </div>
+
+	  <div class="form-group">
+	  	<%= f.label :mot_de_passe %><br />
+	  	<%= f.password_field :password, class: "form-control" %>
+	  </div>
+
+	  <% if devise_mapping.rememberable? -%>
+	    <div><%= f.check_box :remember_me %> <%= f.label :se_souvenir_de_moi %></div>
+	  <% end -%>
+
+	    <button type="submit" class="btn btn-primary">Connexion</button>
+
+	<% end %>
+
+	<%= render "devise/shared/links" %>
+
+</div>
+
+<div class="col-md-12 vertical-spacer"></div>
+<div class="col-md-12 vertical-spacer"></div>

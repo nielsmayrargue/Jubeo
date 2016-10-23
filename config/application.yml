@@ -1,0 +1,12 @@
+# Add application configuration variables here, as shown below.
+
+FACEBOOK_APP_ID: ""
+FACEBOOK_APP_SECRET: ""
+STRIPES_SECRET_KEY: ''
+STRIPES_PUBLISHABLE_KEY: ''
+SECRET_TOKEN: ''
+DEVISE_SECRET_KEY: ''
+NEW_RELIC_LICENSE_KEY: ''
+MIXPANEL_PROJECT_TOKEN: ""
+TEST1: "lalala"
+TEST2: "lololo"

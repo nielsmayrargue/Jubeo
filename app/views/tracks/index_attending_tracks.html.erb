@@ -1,0 +1,77 @@
+<% if current_user.attendings.empty? %>
+
+	<br>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 text-center">
+			<p>
+				<h2>Découvrez vite les Coachings de la plateforme et profitez d'un premier abonnement gratuit !</h2>
+			</p>
+			<br>
+			<p>
+				<%= link_to 'Trouver un Coaching', tracks_path, class: "btn btn-primary"  %>
+			</p>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="row" id="about">
+  <div class="col-md-4">
+  	<div class="jumbotron">
+  		<p>
+  			<%= image_tag 'mind.svg', size: "75x75" %>
+			</p>
+			<p>
+				<h4>Vous souhaitez améliorer la qualité de votre vie ?</h4>
+			</p>
+  	</div>
+  </div>
+
+  <div class="col-md-4">
+  	<div class="jumbotron">
+  		<p>
+  			<%= image_tag 'meditation.svg', size: "75x75" %>
+			</p>
+			<p>
+				<h4>Choisissez le Coaching qui vous correspond</h4>
+			</p>
+  	</div>
+  </div>
+
+ 	<div class="col-md-4">
+  	<div class="jumbotron">
+  		<p>
+  			<%= image_tag 'leaf.svg', size: "75x75" %>
+			</p>
+			<p>
+				<h4>Découvez chaque jour une nouvelle vidéo</h4>
+			</p>
+  	</div>
+  </div>
+</div>
+
+<% else %>
+
+	<h1>Derniers abonnements</h1>
+
+	<div class="row">
+	<%= render partial: 'shortview_track', locals: { track: @current_attending_track } %>
+	<br>
+	<%= render partial: 'shared/attending_info_for_user', locals: { track: @current_attending_track, attending: current_user.attendings.find_by(track: @current_attending_track) } %>
+
+	</div>
+
+	<% if current_user.attendings.count > 1 %>
+		<h1>Mes autres abonnements</h1>
+    <br>
+		<div class="row">
+			<% current_user.attendings.each do |attending| %>
+				<% track = attending.track %>
+				<% unless track == @current_attending_track %>
+					<%= render partial: 'shortview_track', locals: { track: track } %>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+
+<% end %>

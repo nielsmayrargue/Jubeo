@@ -1,0 +1,86 @@
+<div class="modal fade" id="trackCompletedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      	Coaching terminé !
+      </div>
+      <div class="modal-body">
+        <%= image_tag 'track-achievement-big.png', width: 60 %>
+      	Félicitation, vous venez de terminer ce Coaching !
+        <br>
+        <br>
+        <div class="row">
+        <div class="col-md-12" id="track-rating">
+          <%= render partial: 'track_rating', locals: { attending: @track.is_attended_by?(current_user) } %>
+          <div class="row">
+            <div class="col-md-12">
+            <%= form_for([@track, Comment.new], html: { multipart: true, role: "form" }) do |f| %>
+            <div class="form-group">
+              <%= f.label "Un commentaire pour aider les autres utilisateurs ?" %><br>
+              <%= f.text_field :body, class: "form-control", placeholder: "Je conseille de faire l'étape 3 de manière à ce que..." %>
+            </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+
+
+            <% end %>
+
+          </div>
+        </div>
+        </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#trackCompletedModal').modal('show');
+    });
+</script>
+
+<script>
+
+  $('#star').raty({
+    readOnly: true,
+    score: <%= @track.average_rating %>,
+    path: '/assets',
+    starOff: '<%= File.basename(asset_path "star-off.png") %>',
+    starOn: '<%= File.basename(asset_path "star-on.png") %>'
+  });
+
+  <% if @track.is_attended_by?(current_user) == true && @track.is_owned_by?(current_user) == false %>
+    <% if @rating %>
+      $('#user_star').raty({
+        score: <%= @rating.score %>,
+        path: '/assets',
+        starOff: '<%= File.basename(asset_path "star-off.png") %>',
+        starOn: '<%= File.basename(asset_path "star-on.png") %>',
+        click: function(score, evt) {
+          $.ajax({
+            url: '/ratings/' + <%= @rating.id %>,
+            type: 'PATCH',
+            data: { score: score }
+          });
+        }
+      });
+    <% else %>
+      $('#user_star').raty({
+    score: 0,
+    path: '/assets',
+    starOff: '<%= File.basename(asset_path "star-off.png") %>',
+    starOn: '<%= File.basename(asset_path "star-on.png") %>',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings',
+        type: 'POST',
+        data: { score: score, track_id: <%= @track.id %> }
+      });
+    }
+  });
+  <% end %>
+
+
+  <% end %>
+</script>

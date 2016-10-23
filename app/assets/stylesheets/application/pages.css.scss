@@ -1,0 +1,103 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.jumbotron {
+	background-color: white;
+}
+
+.big-icon {
+-o-transition: all .3s ease-in-out;
+-ms-transition: all .3s ease-in-out;
+-moz-transition: all .3s ease-in-out;
+-webkit-transition: all .3s ease-in-out;
+transition: all .4s ease-in-out;
+display: inline-block;
+height: 64px;
+width: 64px;
+}
+
+.tw-social {
+background: url(http://www.seekube.com/theme-home/images/xsocial-icons.png.pagespeed.ic.290eoBdIlp.png) -71px 0 no-repeat;
+}
+
+.fb-social {
+background: url(http://www.seekube.com/theme-home/images/xsocial-icons.png.pagespeed.ic.290eoBdIlp.png) -147px 0 no-repeat;
+}
+
+.g-social {
+background: url(http://www.seekube.com/theme-home/images/xsocial-icons.png.pagespeed.ic.290eoBdIlp.png) -222px 0 no-repeat;
+}
+
+.in-social {
+background: url(http://www.seekube.com/theme-home/images/xsocial-icons.png.pagespeed.ic.290eoBdIlp.png) -299px 0 no-repeat;
+}
+
+.contacts {
+color: #4d6078;
+font-size: 12px;
+}
+
+.contacts ul li {
+list-style: none;
+display: inline-block;
+}
+
+.with-line {
+color: #4e4e4e;
+text-align: center;
+height: 15px;
+border-bottom: 1px solid #4e4e4e;
+font-weight: normal;
+font-size: 30px;
+width: 100%;
+}
+
+#login-screen {
+	width: 100%;
+	padding: 67px 0 50px 0;
+	background-repeat: no-repeat;
+	background-image: image-url('home-2.jpg');
+	background-attachment: fixed;
+	margin-right: 0px;
+	margin-left: 0px;
+	overflow: hidden;
+	background-size: cover !important;
+
+  position: relative;
+
+
+}
+
+  .arrow {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      margin-left: -19px;
+      opacity: 0.75;
+      -webkit-animation: arrowanim 1s infinite; /* Safari 4+ */
+      -moz-animation:    arrowanim 1s infinite; /* Fx 5+ */
+      -o-animation:      arrowanim 1s infinite; /* Opera 12+ */
+      animation:         arrowanim 1s infinite; /* IE 10+ */
+  }
+
+
+@-webkit-keyframes arrowanim {
+  0%   { bottom: 10px; }
+  50% { bottom: 20px; }
+  100% { bottom: 10px; }
+}
+@-moz-keyframes arrowanim {
+  0%   { bottom: 10px; }
+  50% { bottom: 20px; }
+  100% { bottom: 10px; }
+}
+@-o-keyframes arrowanim {
+  0%   { bottom: 10px; }
+  50% { bottom: 20px; }
+  100% { bottom: 10px; }
+}
+@keyframes arrowanim {
+  0%   { bottom: 10px; }
+  50% { bottom: 20px; }
+  100% { bottom: 10px; }
+}

@@ -1,0 +1,71 @@
+
+
+<% if current_user.attendings.empty? %>
+
+	<br>
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 well well-demo">
+			<p class="text-center">
+				<b>Souhaitez-vous une visite guidée de la plateforme ?</b>
+			</p>
+			<p class="text-center">
+				<button type="button" id="demo-intro-button" class="btn btn-primary" onclick="javascript:introJs().start();">Lancer la démo</button>
+			</p>
+		</div>
+	</div>
+
+	<br>
+
+<% end %>
+
+
+<br>
+
+<div id="search-tracks" class="text-center">
+  <%= form_for(:track, url:'/tracks', method:'get', remote: true, html: { id: "search-form" } ) do |f|%>
+    <div class="btn-group" data-toggle="buttons" >
+      <%= link_to "Tous les Coachings", tracks_path, class: "btn theme-filters active", id: "no-filter", remote: true %>
+    	<%= f.collection_radio_buttons :themes, @all_themes, :name, :name do |b|
+        b.label(class: "btn theme-filters") { b.radio_button + b.text }
+      end %>
+    </div>
+
+  <% end %>
+</div>
+
+<br>
+
+<div class="row", id="results">
+
+  <%= render partial: 'index_results', locals: { tracks: @tracks } %>
+
+</div>
+
+<!-- make all wells same heigth = the highest one -->
+<script type="text/javascript">
+	boxes = $('.well-shortview');
+maxHeight = Math.max.apply(
+  Math, boxes.map(function() {
+    return $(this).height();
+}).get());
+boxes.height(maxHeight);
+</script>
+
+<script type="text/javascript">
+  introJs('#demo-intro-button').start();
+  introJs('#track-shortview').setOptions({'nextLabel'});
+</script>
+
+<script type="text/javascript">
+  $('.theme-filters input').change( function() {
+    $('#search-form').submit();
+  });
+</script>
+
+<script type="text/javascript">
+  $('#no-filter').click( function() {
+  $('.theme-filters').removeClass( 'active' );
+  $('#no-filter').toggleClass( 'active' );
+  });
+</script>

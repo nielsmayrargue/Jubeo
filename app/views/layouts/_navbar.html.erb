@@ -1,0 +1,110 @@
+
+		      <% if user_signed_in? %>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+				    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+							<div class="container-fluid">
+
+							<!-- Brand and toggle get grouped for better mobile display -->
+								<div class="navbar-header">
+  								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+  						    <span class="sr-only">Toggle navigation</span>
+  						    <span class="icon-bar"></span>
+  						    <span class="icon-bar"></span>
+  						    <span class="icon-bar"></span>
+  							  </button>
+  								<%= link_to root_path, {class: "navbar-brand"} do %>
+  							   <%= image_tag 'logo-white.png', height: "100%" %>
+  							  <% end %>
+								</div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+			      	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li data-step="3" data-intro="Retrouvez ici les Coachings auxquels vous êtes abonnés">
+			        	      <%= link_to "Mes abonnements",user_attending_tracks_path(current_user) %>
+                    </li>
+                    <li data-step="1" data-intro="Vous êtes ici à l'endroit où sont présentés tous les Coachings créés par les coachs de la plateforme">
+			        	      <%= link_to "Trouver un Coaching",tracks_path %>
+                    </li>
+                    <% if current_user.is_a_coach == true %>
+				              <li class="dropdown">
+				                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          Espace Coach <b class="caret"></b>
+                        </a>
+    				          	<ul class="dropdown-menu">
+    				            	<li>
+                            <%= link_to "Créer un Coaching", new_track_path(current_user) %>
+    				            	</li>
+    				            	<li>
+    				            		<%= link_to "Mes Coachings", user_owned_tracks_path(current_user) %>
+    				            	</li>
+    				          	</ul>
+                      </li>
+                    <% end %>
+                    <li class="visible-lg">
+					      	    <%= form_tag(tracks_path, method: 'get', class: "navbar-form") do %>
+						            <div class="form-group">
+                          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search" %>
+						            </div>
+                        <button type="submit" class="btn btn-default">
+									  	    <i class="glyphicon glyphicon-search"></i>
+                        </button>
+					      	    <% end %>
+			      	      </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profil <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+			          	      <li>
+			            	      <%= link_to "Voir mon profil", user_profile_path(current_user) %>
+                        </li>
+                        <li>
+			            	      <%= link_to "Editer mon profil", edit_user_registration_path %>
+                        </li>
+                        <li class="divider">
+                        </li>
+                        <li>
+			            	      <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+
+              </div><!-- /.container-fluid -->
+			      </nav>
+
+		      <% else %>
+
+		        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+							<div class="container-fluid">
+								<!-- Brand and toggle get grouped for better mobile display -->
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+  							    <span class="sr-only">Toggle navigation</span>
+  							    <span class="icon-bar"></span>
+  							    <span class="icon-bar"></span>
+  							    <span class="icon-bar"></span>
+								  </button>
+									<%= link_to root_path, {class: "navbar-brand"} do %>
+                    <%= image_tag 'logo-white.png', height: "100%" %>
+								  <% end %>
+								</div>
+
+				        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						      <ul class="nav navbar-nav navbar-right">
+						        <li><%= link_to "Accueil", root_path %></li>
+						        <li><a href="/#about">Jubeo ?</a></li>
+						        <li><a href="#contacts">Contacts</a></li>
+						        <li><%= link_to "Blog", blog_path %></li>
+					          <li>
+					          	<%= link_to "Connexion", new_user_session_path, id:"connexion-button" %>
+					          </li>
+						      </ul>
+                </div><!-- /.navbar-collapse -->
+
+              </div><!-- /.container-fluid -->
+            </nav>
+
+ 				<% end %>

@@ -1,0 +1,43 @@
+<div class="row" id="login-screen">
+
+
+
+	  <h1 class="text-center" id="home-text">Des coachings en vidéos pour gagner en sérénité</h1>
+
+ 		<div class="col-md-12 vertical-spacer"></div>
+    <br>
+    <br>
+
+	  <div class="form-inline text-center">
+
+	  	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {role: "form"}) do |f| %>
+			<%= devise_error_messages! %>
+
+			<div class="form-group">
+	      <%= f.text_field :email, class: "form-control login-field", placeholder: "e-mail", id: "login-email" %>
+			</div>
+
+			<div class="form-group">
+	      <%= f.password_field :password, class: "form-control login-field", placeholder: "password", id: "login-pass" %>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Inscription</button>
+
+			<% end %>
+
+			<br>
+      <div class="col-md-12 vertical-spacer"></div>
+
+
+			<%= link_to '<i class="fa fa-facebook"></i> | Connexion via Facebook'.html_safe, user_omniauth_authorize_path(:facebook), class:"btn btn-facebook" %>
+
+		</div>
+
+ 		<div class="col-md-12 vertical-spacer"></div>
+
+    <%= image_tag 'arrow-bot.png', class: "arrow" %>
+
+		<div class="col-md-12 vertical-spacer"></div>
+
+</div>
+

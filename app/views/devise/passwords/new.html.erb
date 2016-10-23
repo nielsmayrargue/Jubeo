@@ -1,0 +1,14 @@
+<h2>Vous avez oublié votre mot de passe ?</h2>
+
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+  <br>
+  <div><%= f.submit "Envoyez-moi les instructions de changement de mot de passe", class: "btn btn-primary" %></div>
+<% end %>
+<br>
+<h3>Attention ! Il est possible que le mail arrive dans vos spams, veuillez donc vérifier</h3>
+<br>
+<%= render "devise/shared/links" %>

@@ -1,0 +1,17 @@
+<div>
+<p class="glyphicon glyphicon-calendar"> Date d'abonnement au Coaching : <%= attending.starting_date %></p>
+</div>
+<br>
+<div>
+<p class="glyphicon glyphicon-leaf"> Nombre de jours terminés : <%= attending.completion %> </p>
+</div>
+<div>
+  <br>
+  <% if attending.track.is_completed_by?(current_user) == false %>
+    <% if attending.track.current_step(current_user) == false  %>
+      <%= link_to "Continuer le coaching", track_path(attending.track), class:"btn btn-primary" %>
+    <% else %>
+      <%= link_to "Continuer le coaching", track_step_path(attending.track, attending.track.current_step(current_user)), class:"btn btn-primary" %>
+    <% end %>
+  <% end %>
+</div>

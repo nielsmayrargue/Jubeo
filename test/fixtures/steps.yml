@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: steps
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :text
+#  video       :string(255)
+#  order       :integer
+#  track_id    :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  video: MyString
+  order: 1
+  track_id: 
+
+two:
+  title: MyString
+  description: MyText
+  video: MyString
+  order: 1
+  track_id: 

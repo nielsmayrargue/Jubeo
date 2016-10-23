@@ -1,0 +1,38 @@
+---
+---
+
+<h1>Billets du Blog</h1>
+
+<br>
+
+<div class="row">
+
+	<div class="col-md-9">
+
+		{% for post in site.posts %}
+      <h2><a href="/blog{{ post.url }}">{{ post.title }}</a></h2>
+      <p>{{ post.date | date_to_string }}</p>
+			<br>
+      <div>{{ post.content }}</div>
+      <div class="col-md-12 vertical-spacer"></div>
+			<div class="col-md-12 vertical-spacer"></div>
+    {% endfor %}
+
+	</div>
+
+	<div class="col-md-3 post-list" id="home">
+
+			<h3>Liste des billets :</h3>
+			
+	    {% for post in site.posts %}
+	    	<div>
+	      <span>{{ post.date | date_to_string }}</span> &raquo; <a href="/blog{{ post.url }}">{{ post.title }}</a>
+	    	</div>
+
+	    {% endfor %}
+
+	</div>
+
+</div>
+
+

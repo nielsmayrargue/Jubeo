@@ -1,0 +1,34 @@
+---
+---
+
+<br>
+
+<div class="row">
+
+	<div class="col-md-9" id="post">
+		<h2> {{ page.title }} </h2>
+			<br>
+		{{ content }}
+
+<div class="col-md-12 vertical-spacer"></div>
+<div class="col-md-12 vertical-spacer"></div>
+
+	</div>
+
+	<div class="col-md-3 post-list" id="home">
+
+			<%= link_to blog_path do %>
+				<h3>Retour au Blog</h3>
+			<% end %>
+			
+			<h3>Liste des billets :</h3>
+			
+	    {% for post in site.posts %}
+	    	<div>
+	      <span>{{ post.date | date_to_string }}</span> &raquo; <a href="/blog{{ post.url }}">{{ post.title }}</a>
+	    	</div>
+	    {% endfor %}
+
+	</div>
+
+</div>

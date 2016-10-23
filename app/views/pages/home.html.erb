@@ -1,0 +1,66 @@
+<div class="col-md-12 vertical-spacer"></div>
+
+<div class="row" id="about">
+
+  <div class="col-md-4">
+  	<div class="jumbotron text-center">
+  		<p>
+  			<%= image_tag 'mind.png', size: "75x75" %>
+			</p>
+			<p>
+				<h4>Vous souhaitez améliorer la qualité de votre vie</h4>
+				Inscrivez-vous sans tarder !
+			</p>
+  	</div>
+  </div>
+
+  <div class="col-md-4">
+  	<div class="jumbotron text-center">
+  		<p>
+  			<%= image_tag 'meditation.png', size: "75x75" %>
+			</p>
+			<p>
+				<h4>Choisissez le Coaching qui vous correspond</h4>
+				Gestion du trac, méditation...
+			</p>
+  	</div>
+  </div>
+
+ 	<div class="col-md-4">
+  	<div class="jumbotron text-center">
+  		<p>
+  			<%= image_tag 'leaf.png', size: "75x75" %>
+			</p>
+			<p>
+				<h4>Découvez chaque jour une nouvelle vidéo</h4>
+				Progressez pas à pas
+			</p>
+  	</div>
+  </div>
+
+</div>
+
+<div class="row text-center well">
+  <h3>
+    Nouveau Coaching : 7 jours pour s'accorder à soi !
+    <br>
+    Vidéo d'introduction
+  </h3>
+  <br>
+  <div class="col-md-12">
+    <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
+      <%= embed_video("https://vimeo.com/105527076", width: "100%", height: ("100%")) %>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 vertical-spacer"></div>
+
+<script type="text/javascript">
+  mixpanel.track('landing page', {
+    'page name' : document.title,
+    'url' : window.location.pathname
+});
+</script>
+
+
+

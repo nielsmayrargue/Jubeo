@@ -1,0 +1,51 @@
+<div class="row">
+
+  <div class="col-md-2" id="nav-div">
+  <% if @track.is_attended_by?(current_user) == true || @track.is_owned_by?(current_user) %>
+      <%= render partial: 'shared/nav', locals: { track: @track, step: @step } %>
+  <% end %>
+</div>
+
+<br>
+
+  <div class="col-md-10" id="step-content">
+
+    <div class="row">
+      <h2>Jour <%= @step.order %> - <%= @step.track.title %> </h2>
+    </div>
+
+    <br>
+
+    <div class="row">
+    		<% if policy(@step).update? %>
+    			<%= link_to "modifier", edit_track_step_path(@track, @step) %>
+    			<%= link_to "supprimer", track_step_path(@track, @step), method: :delete %>
+    		<% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10">
+        <% if @step.video.empty? == false %>
+        	<div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
+      				<%= embed_video(@step.video, width: "100%", height: "100%") %>
+      		</div>
+        <% elsif @step.audio.empty? == false %>
+        <%= @step.audio.html_safe  %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3><%= "Précisions" if @step.description.empty? == false%></h3>
+  		<%= @step.description %>
+    </div>
+
+    <br>
+
+</div>
+
+</div>
+
+<br>
+
+

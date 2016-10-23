@@ -1,0 +1,27 @@
+.sidebar-nav li a.btn {
+  color: white;
+  text-indent: 0px;
+}
+
+.sidebar-nav li#button-next {
+  text-indent: 0px;
+}
+
+.sidebar-nav li a.btn:hover {
+  background-color: #48C998;
+}
+
+.sidebar-nav {
+  background-color: #f5f0eb;
+}
+
+
+#sidebar-wrapper.active {
+  background-color: #f5f0eb;
+}
+
+#tips-collapse {
+  border-top: 1px solid #BBBBBB;
+  margin-right: 10%;
+  margin-left: 10%;
+}

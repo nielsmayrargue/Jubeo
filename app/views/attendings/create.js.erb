@@ -1,0 +1,30 @@
+$('#track-rating').html("<%= j render partial: 'tracks/track_rating', locals: { attending: true } %>");
+$('#track-nav').html("<%= j render partial: 'shared/nav', locals: {track: @track} %>");
+$('#attending-button').html("<%= j render partial: 'shared/attending_button', locals: { is_attending: true, track: @track, attending: @attending } %>");
+
+$("#nav-div").attr('class', 'col-md-2');
+$("#track-content").attr('class', 'col-md-10');
+
+
+$('#star').raty({
+    readOnly: true,
+    score: <%= @track.average_rating %>,
+    path: '/assets',
+    starOff: '<%= File.basename(asset_path "star-off.png") %>',
+    starOn: '<%= File.basename(asset_path "star-on.png") %>'
+  });
+
+$('#user_star').raty({
+    score: 0,
+    path: '/assets',
+    starOff: '<%= File.basename(asset_path "star-off.png") %>',
+    starOn: '<%= File.basename(asset_path "star-on.png") %>',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings',
+        type: 'POST',
+        data: { score: score, track_id: <%= @track.id %> }
+      });
+    }
+  });
+

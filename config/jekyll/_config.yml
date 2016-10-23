@@ -1,0 +1,7 @@
+markdown: rdiscount
+permalink: /:title.html
+destination: ../../app/views/blogs
+exclude:
+  - Rakefile
+  - Gemfile
+  - .gitignore

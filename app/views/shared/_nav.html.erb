@@ -1,0 +1,130 @@
+<a id="menu-toggle" href="#" class="btn btn-primary btn-lg toggle"><i class="glyphicon glyphicon-chevron-left"></i></a>
+
+<div id="sidebar-wrapper" class="active">
+  <ul class="sidebar-nav">
+    <a id="menu-close" href="#" class="glyphicon glyphicon-remove btn-lg pull-right toggle"></a>
+    <li class="sidebar-brand">
+      <b>Progression</b>
+    </li>
+    <%= link_to track_path(track) do %>
+      <li>intro</li>
+    <% end %>
+    <% track.steps.tagged_with("contenu", :on => :step_type, :any => true).each do |step| %>
+      <% if step.is_completed_by?(current_user) == true %>
+        <%= link_to track_step_path(track, step) do %>
+          <li>
+            <%=step.title%>
+            <span class="glyphicon glyphicon-ok"></span>
+          </li>
+        <% end %>
+      <% else %>
+          <%= link_to track_step_path(track, step) do %>
+            <li>
+              <%=step.title%>
+            </li>
+          <% end %>
+      <% end %>
+    <% end %>
+    <br>
+    <li class="text-center" id="button-next">
+        <% if defined? step %>
+    <% next_step = step.set_next_step %>
+    <% if step.track.is_owned_by?(current_user) == false %>
+      <% if step.is_completed_by?(current_user) == true %>
+        <div class="btn-group">
+        <button class="btn btn-success step-achievement"><span class="glyphicon glyphicon-ok"></span> Cette étape déjà terminée !</button>
+        </div>
+      <% else %>
+        <div class="btn-group">
+        <%= form_for [step, StepAchievement.new] do |f| %>
+          <button type="submit" class="btn btn-info step-achievement">J'ai terminé, passer au suivant !</button>
+        <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% first_step = track.steps.find_by(order: 1) %>
+    <% unless first_step == nil || track.is_owned_by?(current_user) %>
+      <% unless first_step.is_completed_by?(current_user) == true %>
+        <div class="btn-group">
+          <%= link_to track_step_path(track, first_step), class:"btn btn-primary" do %>
+          Commencer !
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  </li>
+  <li>
+  </li>
+
+  <br>
+
+  <a href="#" data-toggle="collapse" data-target="#tips">
+    <li id="tips-collapse">
+      Conseils Bonus <b class="caret"></b>
+    </li>
+  </a>
+
+<div id="tips" class="collapse">
+
+      <% track.steps.tagged_with("tip", :on => :step_type, :any => true).each do |tip| %>
+      <%= link_to track_step_path(track, tip) do %>
+        <li>
+          <%=tip.title%>
+        </li>
+      <% end %>
+    <% end %>
+
+</div>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  </ul>
+
+</div>
+
+<script>
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+        $("#nav-div").attr('class', 'col-md-0');
+        $("#track-content").attr('class', 'col-md-12');
+        $("#step-content").attr('class', 'col-md-12');
+
+    });
+    </script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+        $("#nav-div").attr('class', 'col-md-2');
+        $("#track-content").attr('class', 'col-md-10');
+        $("#step-content").attr('class', 'col-md-10');
+    });
+    </script>
+    <script>
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+
+
+
+
